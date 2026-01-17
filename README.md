@@ -44,45 +44,11 @@ A premium, meaningful productivity application that combines smart timers, ambie
 - **PWA**: `vite-plugin-pwa` for offline capabilities and installation
 - **Icons**: Lucide React
 
-## 🚀 Getting Started
 
-### Prerequisites
-- Node.js (v18 or higher)
-- npm or yarn
 
-### Installation
-
-1. Clone the repository
-   ```bash
-   git clone https://github.com/yourusername/focus-flow-studio.git
-   cd focus-flow-studio
-   ```
-
-2. Install dependencies
-   ```bash
-   npm install
-   ```
-
-3. Start the development server
-   ```bash
-   npm run dev
-   ```
-
-4. Build for production
-   ```bash
-   npm run build
-   ```
-
-## 📱 Mobile Support
-
-Focus Flow Studio is designed as a **Progressive Web App (PWA)**.
-- **iOS**: Open in Safari -> Share -> Add to Home Screen
-- **Android**: Open in Chrome -> Add to Home Screen / Install
 
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
