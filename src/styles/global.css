@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 99 102 241;
+    --color-secondary: 139 92 246;
+    --color-accent: 59 130 246;
+  }
+
+  body {
+    @apply bg-stone-50 dark:bg-stone-950 text-stone-900 dark:text-stone-100;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    @apply border-stone-200 dark:border-stone-800;
+  }
+}
+
+@layer components {
+
+  /* Card utility */
+  .card {
+    @apply bg-white dark:bg-stone-900 rounded-2xl border border-stone-200 dark:border-stone-800;
+  }
+
+  /* Custom range slider */
+  input[type="range"] {
+    @apply h-2 rounded-full appearance-none cursor-pointer;
+    background: linear-gradient(to right, rgb(99 102 241) 0%, rgb(99 102 241) var(--value, 0%), rgb(231 229 228) var(--value, 0%), rgb(231 229 228) 100%);
+  }
+
+  .dark input[type="range"] {
+    background: linear-gradient(to right, rgb(99 102 241) 0%, rgb(99 102 241) var(--value, 0%), rgb(68 64 60) var(--value, 0%), rgb(68 64 60) 100%);
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    @apply w-4 h-4 rounded-full bg-white border-2 border-indigo-500 appearance-none cursor-pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    @apply w-4 h-4 rounded-full bg-white border-2 border-indigo-500 appearance-none cursor-pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Smooth scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-stone-300 dark:bg-stone-700 rounded-full;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-stone-400 dark:bg-stone-600;
+  }
+
+  /* Glassmorphism card */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px) saturate(150%);
+    -webkit-backdrop-filter: blur(10px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    will-change: transform;
+    contain: layout style paint;
+  }
+
+  .dark .glass-card {
+    background: rgba(28, 25, 23, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+@layer utilities {
+
+  /* Focus ring utility */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-stone-900;
+  }
+
+  /* Hide scrollbar but allow scroll */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Fade mask for horizontal scroll */
+  .mask-fade-right {
+    mask-image: linear-gradient(to right, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);
+  }
+
+  /* Gradient backgrounds for different timer modes */
+  .gradient-work {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    opacity: 0.15;
+  }
+
+  .dark .gradient-work {
+    opacity: 0.25;
+  }
+
+  .gradient-break {
+    background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+    opacity: 0.15;
+  }
+
+  .dark .gradient-break {
+    opacity: 0.25;
+  }
+
+  .gradient-long-break {
+    background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+    opacity: 0.15;
+  }
+
+  .dark .gradient-long-break {
+    opacity: 0.25;
+  }
+
+  /* OLED-optimized dark mode */
+  .dark.oled {
+    --color-bg-primary: #000000;
+    --color-bg-secondary: #0a0a0a;
+    --color-bg-tertiary: #121212;
+  }
+
+  .dark.oled .bg-stone-950 {
+    background-color: #000000 !important;
+  }
+
+  .dark.oled .bg-stone-900 {
+    background-color: #0a0a0a !important;
+  }
+
+  .dark.oled .bg-stone-800 {
+    background-color: #121212 !important;
+  }
+
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
