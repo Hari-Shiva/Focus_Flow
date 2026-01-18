@@ -15,6 +15,8 @@ import { BottomNav } from './components/BottomNav';
 import { StartParticles } from './components/Animations/StartParticles';
 import { ToastProvider } from './components/shared/ToastProvider';
 import { ProfileSelector } from './components/ProfileSelector';
+import { CreateProfile } from './components/CreateProfile';
+import { useUserStore } from './stores/userStore';
 import { useTimer } from './hooks/useTimer';
 import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
 import { useNotifications } from './hooks/useNotifications';
@@ -29,8 +31,10 @@ import GradientBackground from './components/Effects/GradientBackground';
 import EnvironmentDisplay from './components/Effects/EnvironmentDisplay';
 
 function AppContent() {
+    const { profiles } = useUserStore();
     const [isDark, setIsDark] = useState(false);
     const [isAppStarted, setIsAppStarted] = useState(false);
+    const [showCreateProfile, setShowCreateProfile] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
     const [showStartParticles, setShowStartParticles] = useState(false);
     const [activeTab, setActiveTab] = useState<'timer' | 'tasks' | 'stats'>('timer');
@@ -92,9 +96,25 @@ function AppContent() {
     };
 
     const startApp = () => {
+        // Check if profile exists
+        if (profiles.length === 0) {
+            setShowCreateProfile(true);
+        } else {
+            setIsAppStarted(true);
+            localStorage.setItem('appStarted', 'true');
+        }
+    };
+
+    const handleProfileComplete = () => {
+        setShowCreateProfile(false);
         setIsAppStarted(true);
         localStorage.setItem('appStarted', 'true');
     };
+
+    // Show CreateProfile if triggered after landing page
+    if (showCreateProfile) {
+        return <CreateProfile onComplete={handleProfileComplete} />;
+    }
 
     const features = [
         {
